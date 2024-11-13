@@ -23,7 +23,7 @@
 
 - name: Create a docker directory
   file:
-    path: /home/vboxuser/docker_files
+    path: /home/qcpmiranda/docker_files
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -32,16 +32,15 @@
 - name: Copy Dockerfile to Ubuntu
   become: true
   copy:
-    src: /home/vboxuser/HOA11/Docker/Dockerfile
-    dest: /home/vboxuser/docker_files/
+    src: /home/qcpmiranda/HOA11/Docker/Dockerfile
+    dest: /home/qcpmiranda/docker_files
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '777'
-
 - name: Build Docker Image
   become: true
   docker_image:
-    path: /home/vboxuser/docker_files/
-    name: apache-mariadb-image
+    path: /home/qcpmiranda/docker_files/
+    name: docker-image-apache-mariadb
     tag: latest
     state: present
